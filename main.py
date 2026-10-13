@@ -1,8 +1,27 @@
 import datetime
+import psycopg2
 
-
+try:
+    motor = psycopg2.connect(
+        host="localhost",
+        database="contador_gastos",
+        user="postgres",
+        password="",
+        port= "5432"
+    )
+except Exception as e:
+    print("Error al conectar a la base de datos:", e)
 def agregar_gastos():
-    pass
+    descripcion= input("Ingrese la descripcion del gasto: ")
+    monto= float(input("Ingrese el monto del gasto: "))
+    categoria= input("Ingrese la categoria del gasto: ")
+    fecha_hoy= datetime.datetime.today().strftime("%d/%m/%Y")
+
+    gasto= {"descripcion": descripcion,
+            "monto": monto,
+            "categoria": categoria,
+            "fecha": fecha_hoy}
+    return gasto
 
 def eliminar_gastos():
     pass
@@ -37,6 +56,6 @@ def interfaz():
         if opcion == "6":
             break
         else:
-            diccionario_funciones[opcion]()
-            
-            
+            resultado=diccionario_funciones[opcion]()
+
+    print(resultado)  
