@@ -1,16 +1,6 @@
 import datetime
-import psycopg2
+from db import motor
 
-try:
-    motor = psycopg2.connect(
-        host="localhost",
-        database="contador_gastos",
-        user="postgres",
-        password="",
-        port= "5432"
-    )
-except Exception as e:
-    print("Error al conectar a la base de datos:", e)
 def agregar_gastos():
     descripcion= input("Ingrese la descripcion del gasto: ")
     monto= float(input("Ingrese el monto del gasto: "))
@@ -22,7 +12,7 @@ def agregar_gastos():
             "categoria": categoria,
             "fecha": fecha_hoy}
     return gasto
-
+print(motor)
 def eliminar_gastos():
     pass
 
