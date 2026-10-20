@@ -1,9 +1,18 @@
 import datetime
-
+from db import motor
 
 def agregar_gastos():
-    pass
+    descripcion= input("Ingrese la descripcion del gasto: ")
+    monto= float(input("Ingrese el monto del gasto: "))
+    categoria= input("Ingrese la categoria del gasto: ")
+    fecha_hoy= datetime.datetime.today().strftime("%d/%m/%Y")
 
+    gasto= {"descripcion": descripcion,
+            "monto": monto,
+            "categoria": categoria,
+            "fecha": fecha_hoy}
+    return gasto
+print(motor)
 def eliminar_gastos():
     pass
 
@@ -37,6 +46,6 @@ def interfaz():
         if opcion == "6":
             break
         else:
-            diccionario_funciones[opcion]()
-            
-            
+            resultado=diccionario_funciones[opcion]()
+
+    print(resultado)  
